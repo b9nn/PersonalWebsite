@@ -109,7 +109,7 @@ export default function Contact() {
           role="contentinfo"
         >
           <p className="mb-2">
-            Built with Next.js & Tailwind CSS
+            Built with Next.js & Tailwind CSS + Claude Code :)
           </p>
           <p className="text-xs">
             © {new Date().getFullYear()} {PERSONAL_INFO.fullName}. All rights reserved.
