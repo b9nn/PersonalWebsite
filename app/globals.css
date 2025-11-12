@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
+/* ===========================================
+   CSS CUSTOM PROPERTIES
+   =========================================== */
+
 :root {
+  /* Colors */
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #2563eb;
+
+  /* Spacing */
+  --section-padding: 5rem;
+  --container-padding: 1.5rem;
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-base: 250ms;
+  --transition-slow: 400ms;
 }
 
 @theme inline {
@@ -16,23 +31,165 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --accent: #3b82f6;
   }
 }
 
+/* ===========================================
+   BASE STYLES
+   =========================================== */
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* Account for fixed nav */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utility classes for text truncation */
+/* ===========================================
+   UTILITY CLASSES
+   =========================================== */
+
+/* Text truncation with line clamping */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Screen reader only content (for accessibility) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip to content link for keyboard navigation */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--accent);
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  z-index: 100;
+  transition: top var(--transition-base) ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ===========================================
+   SCROLL ANIMATIONS
+   =========================================== */
+
+/* Elements fade in when they enter viewport */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delays for child elements */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.stagger-children.visible > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children.visible > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children.visible > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children.visible > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children.visible > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children.visible > *:nth-child(6) { animation-delay: 0.6s; }
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================================
+   ENHANCED FOCUS STATES
+   =========================================== */
+
+/* Better focus indicators for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ===========================================
+   CUSTOM SCROLLBAR (Optional)
+   =========================================== */
+
+/* Customize scrollbar for better aesthetics */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: #374151;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+  }
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATIONS
+   =========================================== */
+
+/* Hint browser for hardware acceleration on animated elements */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
