@@ -21,7 +21,7 @@ export default function Contact() {
           </a>
 
           <a
-            href={`mailto:contact@example.com`}
+            href={`mailto:bgladney@uwaterloo.ca`}
             className="flex items-center gap-3 px-6 py-3 border border-zinc-300 dark:border-zinc-700 rounded-lg hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
