@@ -23,7 +23,14 @@ const config: Config = {
         "fade-in-up": "fadeInUp 0.6s ease-out forwards",
         "fade-in-down": "fadeInDown 0.6s ease-out forwards",
         "slide-in": "slideIn 0.5s ease-out forwards",
+        "slide-in-left": "slideInLeft 0.6s ease-out forwards",
+        "slide-in-right": "slideInRight 0.6s ease-out forwards",
         "scale-in": "scaleIn 0.4s ease-out forwards",
+        "float": "float 3s ease-in-out infinite",
+        "gradient": "gradientShift 3s ease infinite",
+        "pulse-glow": "pulseGlow 2s ease-in-out infinite",
+        "blob": "blobMorph 8s ease-in-out infinite",
+        "shimmer": "shimmer 2s infinite linear",
       },
       keyframes: {
         fadeIn: {
@@ -42,9 +49,37 @@ const config: Config = {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        slideInLeft: {
+          "0%": { opacity: "0", transform: "translateX(-50px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        slideInRight: {
+          "0%": { opacity: "0", transform: "translateX(50px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
         scaleIn: {
           "0%": { opacity: "0", transform: "scale(0.9)" },
           "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        gradientShift: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        pulseGlow: {
+          "0%, 100%": { boxShadow: "0 0 5px rgba(37, 99, 235, 0.5)" },
+          "50%": { boxShadow: "0 0 20px rgba(37, 99, 235, 0.8)" },
+        },
+        blobMorph: {
+          "0%, 100%": { borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" },
+          "50%": { borderRadius: "30% 60% 70% 40% / 50% 60% 30% 60%" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-1000px 0" },
+          "100%": { backgroundPosition: "1000px 0" },
         },
       },
       // Enhanced typography scale
@@ -63,6 +98,11 @@ const config: Config = {
         "soft": "0 2px 15px rgba(0, 0, 0, 0.05)",
         "soft-lg": "0 10px 40px rgba(0, 0, 0, 0.1)",
         "glow": "0 0 20px rgba(37, 99, 235, 0.3)",
+        "glow-lg": "0 0 30px rgba(37, 99, 235, 0.5)",
+      },
+      // Backdrop blur for glassmorphism
+      backdropBlur: {
+        "xs": "2px",
       },
     },
   },

@@ -10,10 +10,10 @@ import ProjectCard from './ProjectCard';
 // ===========================================
 // Displays grid of project cards with animations
 // Projects are loaded from ../data/projects.ts
-// Optional: Uncomment filtering code below to enable category filtering
 
 export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer for fade-in animations
   useEffect(() => {
@@ -32,33 +32,29 @@ export default function Projects() {
       observer.observe(sectionRef.current);
     }
 
+    if (gridRef.current) {
+      observer.observe(gridRef.current);
+    }
+
     return () => observer.disconnect();
   }, []);
-
-  // ===========================================
-  // OPTIONAL: Category Filtering
-  // ===========================================
-  // Uncomment this code to enable project filtering by category
-  /*
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const filteredProjects = selectedCategory === 'All'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
-  */
 
   return (
     <section
       id="projects"
-      className="min-h-screen px-6 py-20 bg-zinc-50 dark:bg-zinc-900"
+      className="relative min-h-screen px-6 py-20 bg-zinc-50 dark:bg-zinc-950"
       aria-labelledby="projects-heading"
     >
-      <div ref={sectionRef} className="max-w-6xl mx-auto fade-in-on-scroll">
+      {/* Background decoration */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-tr from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl" />
+
+      <div ref={sectionRef} className="max-w-6xl mx-auto relative z-10 fade-in-on-scroll">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2
             id="projects-heading"
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
           >
             {SECTION_CONTENT.projects.heading}
           </h2>
@@ -67,29 +63,8 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* ===========================================
-            OPTIONAL: Category Filter Buttons
-            =========================================== */}
-        {/* Uncomment to enable filtering
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {PROJECT_CATEGORIES.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-        */}
-
-        {/* Project cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Project cards grid with animation - 2 columns */}
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.name}
@@ -97,13 +72,6 @@ export default function Projects() {
               index={index}
             />
           ))}
-        </div>
-
-        {/* Project count indicator */}
-        <div className="text-center mt-12">
-          <p className="text-sm text-zinc-500 dark:text-zinc-500">
-            Showing {projects.length} project{projects.length !== 1 ? 's' : ''}
-          </p>
         </div>
       </div>
     </section>

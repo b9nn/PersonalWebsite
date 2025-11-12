@@ -53,8 +53,29 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         {project.description}
       </p>
 
+      {/* Technologies (if available) */}
+      {project.technologies && project.technologies.length > 0 && (
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, 4).map((tech, i) => (
+              <span
+                key={i}
+                className="text-xs px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800 font-medium"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 4 && (
+              <span className="text-xs px-2.5 py-1 text-zinc-500 dark:text-zinc-400">
+                +{project.technologies.length - 4} more
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Metadata badges: language, stars, category */}
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className="flex items-center gap-3 flex-wrap mt-auto">
         {/* Language badge with colored dot */}
         {project.language && (
           <span className="flex items-center gap-1.5 text-xs" aria-label={`Written in ${project.language}`}>

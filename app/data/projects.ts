@@ -16,15 +16,28 @@ export interface Project {
   url: string;
   category: string;
   stars?: number;
+  technologies?: string[];
+  achievements?: string[];
 }
 
 export const projects: Project[] = [
+  {
+    name: "SleepyPlays",
+    description: "Automated YouTube Shorts content creation system using AI for story generation, voice synthesis, and scheduled video publishing",
+    language: "JavaScript",
+    url: "https://github.com/b9nn/SleepyPlays",
+    category: "Full Stack",
+    technologies: ["Node.js", "OpenAI GPT-4", "ElevenLabs", "FFmpeg", "YouTube API", "Docker"],
+    achievements: ["Built end-to-end video automation pipeline", "Integrated AI story generation across multiple genres", "Implemented scheduled uploads every 6 hours", "Cloud-ready architecture with Docker support"]
+  },
   {
     name: "FluidFlow",
     description: "Machine-learning regression model that predicts key acoustic outputs of various vocal fold models",
     language: "Python",
     url: "https://github.com/b9nn/FluidFlow",
-    category: "Machine Learning"
+    category: "Machine Learning",
+    technologies: ["Python", "Scikit-Learn", "Random Forest", "Pandas", "Matplotlib"],
+    achievements: ["Developed Random Forest regression model", "Optimized hyperparameters with cross-validation", "Generated contour plots for model visualization"]
   },
   {
     name: "TitanicML",
@@ -39,14 +52,18 @@ export const projects: Project[] = [
     description: "Deep learning image classification using PyTorch on the CIFAR-10 dataset",
     language: "Python",
     url: "https://github.com/b9nn/CIFAR10-PyTorch",
-    category: "Machine Learning"
+    category: "Machine Learning",
+    technologies: ["PyTorch", "Torchvision", "ResNet18", "Python"],
+    achievements: ["Fine-tuned pretrained ResNet18 with transfer learning", "Implemented data augmentation pipeline", "Achieved 78% classification accuracy on test set"]
   },
   {
-    name: "IMBD Review Classifier",
-    description: "Natural language processing model for sentiment analysis and classification",
+    name: "IMDB Sentiment Classifier",
+    description: "Transformer-based sentiment analysis model for movie review classification",
     language: "Python",
     url: "https://github.com/b9nn/SentimentClassifier_NLP",
-    category: "Machine Learning"
+    category: "Machine Learning",
+    technologies: ["Hugging Face", "DistilBERT", "PyTorch", "Transformers", "Python"],
+    achievements: ["Fine-tuned DistilBERT on 50k IMDB reviews", "Developed TF-IDF + Logistic Regression baseline", "Improved over baseline in accuracy and F1 score"]
   },
   {
     name: "ExoAI",
@@ -57,10 +74,12 @@ export const projects: Project[] = [
   },
   {
     name: "MealMinder",
-    description: "Grocery Planning Tool",
+    description: "Smart meal planning and grocery management application with AI-powered meal plan generation",
     language: "Python + TypeScript",
     url: "https://github.com/b9nn/MealMinder",
-    category: "Full Stack"
+    category: "Full Stack",
+    technologies: ["React", "Django", "SQLite", "Node.js", "TailwindCSS", "OpenAI API"],
+    achievements: ["Built responsive UI with React + TailwindCSS", "Developed secure REST API with Django", "Integrated OpenAI API for personalized meal plans", "Reduced meal planning time by 90%"]
   },
   {
     name: "TBCM",

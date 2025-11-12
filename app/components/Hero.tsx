@@ -36,22 +36,27 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 py-20 pt-32"
+      className="relative min-h-screen flex items-center justify-center px-6 py-20 pt-32 overflow-hidden"
       aria-labelledby="hero-heading"
     >
+      {/* Animated background blobs */}
+      <div className="absolute top-20 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-blob" />
+      <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '4s' }} />
+
       <div
         ref={heroRef}
-        className="max-w-4xl mx-auto text-center stagger-children"
+        className="max-w-4xl mx-auto text-center stagger-children relative z-10"
       >
-        {/* Main heading with gradient text */}
+        {/* Main heading with animated gradient text */}
         <h1
           id="hero-heading"
-          className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent will-animate"
+          className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent will-animate animate-gradient bg-[length:200%_auto]"
         >
           Hi, I'm {PERSONAL_INFO.name}
         </h1>
 
-        {/* Job title/subtitle */}
+        {/* Job title/subtitle with float animation */}
         <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 mb-8 font-medium will-animate">
           {PERSONAL_INFO.title}
         </p>
@@ -61,12 +66,12 @@ export default function Hero() {
           {PERSONAL_INFO.tagline}
         </p>
 
-        {/* Call-to-action buttons */}
+        {/* Call-to-action buttons with enhanced animations */}
         <div className="flex gap-4 justify-center flex-wrap will-animate">
           {/* Primary CTA - View Projects */}
           <a
             href="#projects"
-            className="group px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-all duration-200 hover:shadow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="group px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full font-medium transition-all duration-300 hover:shadow-glow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             aria-label="View my projects"
           >
             <span className="flex items-center gap-2">
@@ -93,12 +98,12 @@ export default function Hero() {
             href={PERSONAL_INFO.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group px-8 py-3 border-2 border-zinc-300 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500 rounded-full font-medium transition-all duration-200 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="group px-8 py-3 border-2 border-zinc-300 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 backdrop-blur-sm bg-white/50 dark:bg-zinc-900/50"
             aria-label="Visit my GitHub profile"
           >
             <span className="flex items-center gap-2">
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 group-hover:rotate-12 transition-transform"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -111,6 +116,19 @@ export default function Hero() {
               </svg>
               GitHub
             </span>
+          </a>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="mt-20 animate-bounce">
+          <a
+            href="#about"
+            className="inline-block text-zinc-400 hover:text-blue-600 transition-colors"
+            aria-label="Scroll to about section"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </a>
         </div>
       </div>
