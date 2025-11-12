@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "b9nn - Portfolio",
+  title: "Ben Gladney",
   description: "Software Engineer & Developer - Portfolio showcasing projects in machine learning, web development, and computational research",
 };
 
