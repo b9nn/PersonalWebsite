@@ -67,7 +67,7 @@ export default function Navigation() {
               aria-label="Home"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {PERSONAL_INFO.name}
+              {PERSONAL_INFO.fullName}
             </a>
 
             {/* Desktop Navigation links */}
