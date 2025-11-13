@@ -17,7 +17,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     category: "Libraries & Frameworks",
-    skills: ["PyTorch", "Hugging Face", "Scikit-Learn", "Django", "React", "Flask", "Pandas", "NumPy", "Matplotlib", "Torchvision", "SQLite"],
+    skills: ["PyTorch", "TensorFlow", "Hugging Face", "Scikit-Learn", "Django", "React", "Flask", "Pandas", "NumPy", "Matplotlib", "Torchvision", "SQLite"],
     icon: "📚"
   },
   {
