@@ -36,7 +36,7 @@ export const projects: Project[] = [
     language: "Python",
     url: "https://github.com/b9nn/FluidFlow",
     category: "Machine Learning",
-    technologies: ["Python", "Scikit-Learn", "Random Forest", "Pandas", "Matplotlib"],
+    technologies: ["Python", "Scikit-Learn", "TensorFlow", "Pandas", "Matplotlib"],
     achievements: ["Developed Random Forest regression model", "Optimized hyperparameters with cross-validation", "Generated contour plots for model visualization"]
   },
   {
@@ -44,8 +44,9 @@ export const projects: Project[] = [
     description: "Predicting the survival of passengers aboard the Titanic using machine learning",
     language: "Python",
     url: "https://github.com/b9nn/TitanicML",
-    stars: 1,
-    category: "Machine Learning"
+    category: "Machine Learning",
+    technologies: ["Python", "Scikit-Learn", "Pandas", "Numpy", "Matplotlib"]
+
   },
   {
     name: "Deep Image Classifier",
@@ -70,7 +71,8 @@ export const projects: Project[] = [
     description: "Web application for exploring and visualizing exoplanet data",
     language: "TypeScript",
     url: "https://github.com/b9nn/HuntingExoPlanets",
-    category: "Web Development"
+    category: "Web Development",
+    technologies: ["Python", "React", "Scikit-Learn", "Node.js"]
   },
   {
     name: "MealMinder",
@@ -86,27 +88,31 @@ export const projects: Project[] = [
     description: "Triangular Body Cover Model of the Vocal Folds",
     language: "Python",
     url: "https://github.com/b9nn/TBCM",
-    category: "Research"
+    category: "Research",
+    technologies: ["NumPy", "SciPy", "SymPy", "Pandas", "Matplotlib"]
   },
   {
     name: "Turtle Flight",
     description: "Models planes flying to destinations while avoiding collisions, with gas mechanics implemented",
     language: "NetLogo",
     url: "https://github.com/b9nn/flight_model",
-    category: "Simulation"
+    category: "Simulation",
+    technologies: ["NetLogo", "Scala"]
   },
   {
     name: "FamilyTree",
     description: "Interactive family tree web application",
     language: "JavaScript",
     url: "https://github.com/b9nn/GladneyFamilyTree",
-    category: "Web Development"
+    category: "Web Development",
+    technologies: ["JavaScript", "TypeScript", "FastAPI", "SQLAlchemy"]
   },
   {
     name: "VTU2CSV",
     description: "Converts VTU files to CSV format for data analysis",
     language: "Python",
     url: "https://github.com/b9nn/vtu_to_csv_conversion",
-    category: "Utilities"
+    category: "Utilities",
+    technologies: ["Python", "Pandas", "NumPy"]
   }
 ];
