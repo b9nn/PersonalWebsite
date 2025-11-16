@@ -57,7 +57,7 @@ export default function About() {
               {PERSONAL_INFO.tagline}
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Currently pursuing {EDUCATION.degree} at {EDUCATION.school}, I'm passionate about
+              Currently pursuing {EDUCATION.degree} at {EDUCATION.school}, I'm
               leveraging data science and machine learning to solve real-world problems.
             </p>
           </div>

@@ -10,7 +10,7 @@ export const PERSONAL_INFO = {
   name: "Ben",
   fullName: "Benjamin Gladney",
   title: "Data Scientist & Software Engineer",
-  tagline: "I build projects spanning machine learning, computational research, and web development. Passionate about solving complex problems with elegant solutions.",
+  tagline: "I build projects spanning machine learning, computational research, and web development. I like solving problems.",
   email: "bgladney@uwaterloo.ca",
   phone: "+1-437-388-5855",
   github: "https://github.com/b9nn",
@@ -77,13 +77,10 @@ export const PROJECT_CATEGORIES = [
   "Utilities"
 ] as const;
 
-// Section Content
-// ------------------------------------
-// Customize section headings and descriptions
 export const SECTION_CONTENT = {
   about: {
     heading: "About Me",
-    description: "Data Science student at the University of Waterloo with a passion for machine learning, web development, and solving complex problems."
+    description: "Data Science student at the University of Waterloo with an interest for machine learning, web development, and solving complex problems."
   },
   experience: {
     heading: "Experience",
@@ -99,6 +96,6 @@ export const SECTION_CONTENT = {
   },
   contact: {
     heading: "Get In Touch",
-    description: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
+    description: "I'm always open to discussing creative ideas, or opportunities to be part of your vision."
   }
 } as const;

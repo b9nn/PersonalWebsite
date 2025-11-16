@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
     duration: "May 2025 - Aug. 2025",
     location: "Toronto, ON",
     description: [
-      "Trained a generative AI model with OCR to extract key product specifications, including case size, resistance, and maximum voltage, from technical drawings, reducing manual data entry",
+      "Engineered a OCR pipeline to extract key product specifications, including case size, resistance, and maximum voltage, from technical drawings, reducing manual data entry",
       "Designed and implemented advanced data visualizations in PowerBI for supply chain process owners, cutting preparation and presentation time by 40%",
       "Leveraged APIFY to scrape part data into JSON, then performed ETL with Python and Pandas. Increased the proportion of benchmarked parts by 18% and total dollar value by 22%"
     ],
@@ -36,7 +36,8 @@ export const experiences: Experience[] = [
     duration: "Sep. 2024 - Present",
     location: "University of Waterloo",
     description: [
-      "Developed a Random Forest regression model to predict fundamental frequency and sound pressure level, optimizing hyperparameters with cross-validation and generating contour plots to visualize model performance",
+      "Employed  various regression models to predict vocal fold outputs",
+      "Applied transfer learning to predict on scarce finite element data",
       "Authored Python scripts to transform vector data from VTU-formatted files into Pandas data frames then export as CSV for further analysis"
     ],
     technologies: ["Python", "Scikit-Learn", "Pandas", "Random Forest", "Machine Learning", "Data Visualization"]
