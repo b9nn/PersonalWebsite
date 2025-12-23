@@ -29,16 +29,12 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center py-20 px-6 overflow-hidden fade-in-on-scroll"
+      className="relative min-h-screen flex items-center py-20 px-6 fade-in-on-scroll"
     >
-      {/* Animated background blob */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
-
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {SECTION_CONTENT.about.heading}
           </h2>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
@@ -123,7 +119,7 @@ export default function About() {
 
         {/* Get In Touch - Full Width Centered */}
         <div className="w-full">
-          <div className="max-w-2xl mx-auto p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border border-blue-200 dark:border-blue-800 text-center">
+          <div className="max-w-2xl mx-auto p-8 rounded-2xl bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 text-center">
             <h3 className="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">
               Get In Touch
             </h3>

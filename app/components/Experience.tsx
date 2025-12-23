@@ -38,7 +38,7 @@ export default function Experience() {
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {SECTION_CONTENT.experience.heading}
           </h2>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
@@ -49,7 +49,7 @@ export default function Experience() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 transform md:-translate-x-1/2" />
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-500 transform md:-translate-x-1/2" />
 
           {/* Experience Items */}
           <div className="space-y-12">
@@ -63,7 +63,7 @@ export default function Experience() {
               >
                 <div className={`flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-4`}>
                   {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-4 border-zinc-50 dark:border-zinc-950 transform md:-translate-x-1/2 z-[5] animate-pulse-glow" />
+                  <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-zinc-50 dark:border-zinc-950 transform md:-translate-x-1/2 z-[5]" />
 
                   {/* Content Card */}
                   <div className={`ml-8 md:ml-0 flex-1 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
@@ -147,7 +147,7 @@ export default function Experience() {
         <div className="mt-16 text-center">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:scale-105 hover:shadow-glow-lg transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all duration-300"
           >
             View My Projects
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

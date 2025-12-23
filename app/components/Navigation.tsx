@@ -63,7 +63,7 @@ export default function Navigation() {
             {/* Logo/Name */}
             <a
               href="#home"
-              className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+              className="text-xl font-bold text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity"
               aria-label="Home"
               onClick={() => setIsMobileMenuOpen(false)}
             >

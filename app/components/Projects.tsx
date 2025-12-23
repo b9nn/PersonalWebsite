@@ -45,16 +45,12 @@ export default function Projects() {
       className="relative min-h-screen px-6 py-20 bg-zinc-50 dark:bg-zinc-950"
       aria-labelledby="projects-heading"
     >
-      {/* Background decoration */}
-      <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-tr from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl" />
-
       <div ref={sectionRef} className="max-w-6xl mx-auto relative z-10 fade-in-on-scroll">
         {/* Section header */}
         <div className="text-center mb-12">
           <h2
             id="projects-heading"
-            className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-4"
           >
             {SECTION_CONTENT.projects.heading}
           </h2>

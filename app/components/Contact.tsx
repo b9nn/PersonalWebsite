@@ -34,13 +34,9 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 py-20"
       aria-labelledby="contact-heading"
     >
-      {/* Animated background */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
-
       <div
         ref={sectionRef}
         className="max-w-4xl mx-auto text-center fade-in-on-scroll relative z-10"
@@ -48,7 +44,7 @@ export default function Contact() {
         {/* Section header */}
         <h2
           id="contact-heading"
-          className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+          className="text-4xl md:text-5xl font-bold mb-6"
         >
           {SECTION_CONTENT.contact.heading}
         </h2>
@@ -65,7 +61,7 @@ export default function Contact() {
             href={PERSONAL_INFO.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center gap-3 p-6 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:shadow-glow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 animate-float"
+            className="group flex flex-col items-center gap-3 p-6 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             aria-label="Visit my LinkedIn profile"
           >
             <svg
@@ -127,19 +123,6 @@ export default function Contact() {
             <span className="font-semibold">Email</span>
           </a>
         </div>
-
-        {/* Footer */}
-        <footer
-          className="text-sm text-zinc-500 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-800 pt-8"
-          role="contentinfo"
-        >
-          <p className="mb-2">
-            Built with Next.js & Tailwind CSS + Claude Code
-          </p>
-          <p className="text-xs">
-            © {new Date().getFullYear()} {PERSONAL_INFO.fullName}. All rights reserved.
-          </p>
-        </footer>
       </div>
     </section>
   );

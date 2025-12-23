@@ -42,14 +42,10 @@ export default function Skills() {
       ref={sectionRef}
       className="relative min-h-screen py-20 px-6 fade-in-on-scroll"
     >
-      {/* Animated background elements */}
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '4s' }} />
-
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {SECTION_CONTENT.skills.heading}
           </h2>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
@@ -106,7 +102,7 @@ export default function Skills() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:scale-105 hover:shadow-glow-lg transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all duration-300"
             >
               View Projects
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

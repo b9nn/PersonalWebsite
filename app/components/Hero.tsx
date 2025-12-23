@@ -36,22 +36,17 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center px-6 py-20 pt-32 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 py-20 pt-32"
       aria-labelledby="hero-heading"
     >
-      {/* Animated background blobs */}
-      <div className="absolute top-20 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '4s' }} />
-
       <div
         ref={heroRef}
         className="max-w-4xl mx-auto text-center stagger-children relative z-10"
       >
-        {/* Main heading with animated gradient text */}
+        {/* Main heading */}
         <h1
           id="hero-heading"
-          className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent will-animate animate-gradient bg-[length:200%_auto]"
+          className="text-5xl md:text-7xl font-bold mb-6 will-animate"
         >
           Hi, I'm {PERSONAL_INFO.name}
         </h1>
@@ -71,7 +66,7 @@ export default function Hero() {
           {/* Primary CTA - View Projects */}
           <a
             href="#projects"
-            className="group px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full font-medium transition-all duration-300 hover:shadow-glow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="group px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             aria-label="View my projects"
           >
             <span className="flex items-center gap-2">
