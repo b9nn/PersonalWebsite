@@ -32,7 +32,7 @@ export default function Contact() {
       aria-labelledby="contact-heading"
     >
       {/* Single ambient glow */}
-      <div className="glow-orb w-[600px] h-[600px] bg-amber/3 bottom-1/4 right-1/4" />
+      <div className="glow-orb w-[600px] h-[600px] bg-cyan/3 bottom-1/4 right-1/4" />
 
       {/* Fog layer */}
       <div className="fog-layer opacity-30" />

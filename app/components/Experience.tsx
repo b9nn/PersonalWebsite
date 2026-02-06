@@ -38,7 +38,7 @@ export default function Experience() {
       <div className="fog-layer opacity-20" />
 
       {/* Single ambient glow */}
-      <div className="glow-orb w-[500px] h-[500px] bg-amber/3 top-0 right-1/4" />
+      <div className="glow-orb w-[500px] h-[500px] bg-cyan/3 top-0 right-1/4" />
 
       {/* Warm neon atmosphere - distant street-level glow */}
       <div
