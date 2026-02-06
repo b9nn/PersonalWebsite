@@ -15,7 +15,7 @@ export const PERSONAL_INFO = {
   phone: "+1-437-388-5855",
   github: "https://github.com/b9nn",
   githubUsername: "b9nn",
-  linkedin: "https://linkedin.com/in/benjamin-gladney"
+  linkedin: "https://www.linkedin.com/in/benjamin-gladney-35b804325/"
 } as const;
 
 // Education Information
