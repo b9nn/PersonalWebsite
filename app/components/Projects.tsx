@@ -1,21 +1,13 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { projects } from '../data/projects';
-import { SECTION_CONTENT } from '../data/constants';
+import { featuredProjects } from '../data/projects';
 import ProjectCard from './ProjectCard';
-
-// ===========================================
-// PROJECTS COMPONENT
-// ===========================================
-// Displays grid of project cards with animations
-// Projects are loaded from ../data/projects.ts
 
 export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer for fade-in animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,33 +33,58 @@ export default function Projects() {
 
   return (
     <section
-      id="projects"
-      className="relative min-h-screen px-6 py-20 bg-zinc-50 dark:bg-zinc-950"
+      id="memory-archive"
+      className="relative min-h-screen px-6 py-32 section-deep anamorphic-streak neon-reflect--magenta"
       aria-labelledby="projects-heading"
     >
-      <div ref={sectionRef} className="max-w-6xl mx-auto relative z-10 fade-in-on-scroll">
+      {/* Single ambient glow */}
+      <div className="glow-orb w-[600px] h-[600px] bg-magenta/3 top-1/4 left-0" />
+
+      {/* Floating neon signage - distant urban atmosphere */}
+      <div
+        className="absolute top-1/4 right-0 w-[320px] h-[550px] pointer-events-none z-[1] opacity-[0.75] mix-blend-screen hidden lg:block"
+        aria-hidden="true"
+        style={{
+          backgroundImage: 'url(/images/chinese_lettering.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'brightness(0.6) contrast(1.3) saturate(1.4)',
+          maskImage: 'linear-gradient(to left, transparent 0%, black 30%, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 30%, black 70%, transparent 100%)',
+        }}
+      />
+
+      <div ref={sectionRef} className="max-w-5xl mx-auto relative z-10 fade-in-on-scroll">
         {/* Section header */}
-        <div className="text-center mb-12">
+        <div className="mb-20">
+          <span className="terminal-text text-xs tracking-[0.2em] uppercase block mb-4">
+            // memory.archive.access
+          </span>
           <h2
             id="projects-heading"
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-4xl md:text-5xl font-extralight text-text-primary mb-6"
           >
-            {SECTION_CONTENT.projects.heading}
+            Memory Archive
           </h2>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            {SECTION_CONTENT.projects.description}
+          <p className="text-text-secondary max-w-2xl text-lg">
+            Recovered data fragments from previous constructs. Each memory represents a unique solution to complex problems.
           </p>
         </div>
 
-        {/* Project cards grid with animation - 2 columns */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
-          {projects.map((project, index) => (
+        {/* Project cards grid */}
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
+          {featuredProjects.map((project, index) => (
             <ProjectCard
               key={project.name}
               project={project}
               index={index}
             />
           ))}
+        </div>
+
+        {/* Footer */}
+        <div className="mt-16">
+          <span className="terminal-text text-xs">// end_of_archive</span>
         </div>
       </div>
     </section>

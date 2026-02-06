@@ -1,23 +1,45 @@
 @import "tailwindcss";
 
 /* ===========================================
-   CSS CUSTOM PROPERTIES
+   BLADE RUNNER 2049 THEME
+   Dark, atmospheric, cinematic aesthetic
    =========================================== */
 
 :root {
-  /* Colors */
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #2563eb;
+  /* Blade Runner Color Palette */
+  --void: #030305;
+  --abyss: #070810;
+  --deep: #0c0e15;
+  --surface: #12151d;
+  --muted: #1a1d28;
 
-  /* Spacing */
-  --section-padding: 5rem;
-  --container-padding: 1.5rem;
+  /* Neon Accent Colors */
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0, 212, 255, 0.15);
+  --cyan-glow: rgba(0, 212, 255, 0.4);
 
-  /* Transitions */
-  --transition-fast: 150ms;
-  --transition-base: 250ms;
-  --transition-slow: 400ms;
+  --amber: #ff9f1c;
+  --amber-dim: rgba(255, 159, 28, 0.15);
+  --amber-glow: rgba(255, 159, 28, 0.4);
+
+  --magenta: #ff2d6a;
+  --magenta-dim: rgba(255, 45, 106, 0.15);
+  --magenta-glow: rgba(255, 45, 106, 0.4);
+
+  /* Text Colors */
+  --text-primary: #e8e6e3;
+  --text-secondary: #9ca3af;
+  --text-dim: #5c6370;
+
+  /* Theme Variables */
+  --background: var(--void);
+  --foreground: var(--text-primary);
+  --accent: var(--cyan);
+
+  /* Timing - Cinematic pacing */
+  --transition-slow: 1000ms;
+  --transition-cinematic: 1600ms;
+  --transition-dramatic: 2400ms;
 }
 
 @theme inline {
@@ -27,36 +49,763 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --accent: #3b82f6;
-  }
-}
-
 /* ===========================================
    BASE STYLES
    =========================================== */
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem; /* Account for fixed nav */
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  animation: page-fade-in 1.5s ease-out;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===========================================
+   VIDEO BACKGROUND SYSTEM
+   =========================================== */
+
+.video-bg-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.4;
+  filter: saturate(0.7) contrast(1.1);
+}
+
+/* Rain overlay - subtle, atmospheric */
+.rain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: screen;
+  opacity: 0.15;
+}
+
+.rain-overlay video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===========================================
+   SCANLINES & FILM GRAIN
+   =========================================== */
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.015) 3px,
+    rgba(0, 0, 0, 0.015) 6px
+  );
+}
+
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 98;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  animation: grain 0.8s steps(1) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(1%, 1%); }
+  30% { transform: translate(-1%, 1%); }
+  40% { transform: translate(1%, -1%); }
+  50% { transform: translate(-1%, 0%); }
+  60% { transform: translate(1%, 0%); }
+  70% { transform: translate(0%, 1%); }
+  80% { transform: translate(0%, -1%); }
+  90% { transform: translate(1%, 1%); }
+}
+
+/* ===========================================
+   FOG & ATMOSPHERIC LAYERS
+   =========================================== */
+
+.fog-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(255, 159, 28, 0.08) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(0, 212, 255, 0.03) 100%
+  );
+  animation: fog-drift 20s ease-in-out infinite;
+}
+
+@keyframes fog-drift {
+  0%, 100% { opacity: 0.8; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(2%); }
+}
+
+/* Ambient glow orbs - subtle, slow */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  animation: glow-pulse 16s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.05); }
+}
+
+/* ===========================================
+   TERMINAL / RETRO-FUTURISTIC UI
+   =========================================== */
+
+/* CRT-style monitor frame */
+.terminal-frame {
+  position: relative;
+  background: var(--deep);
+  border: 1px solid var(--cyan-dim);
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.5),
+    0 0 20px var(--cyan-dim);
+}
+
+.terminal-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to bottom, rgba(0, 212, 255, 0.1), transparent);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Terminal header with fake buttons */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--cyan-dim);
+}
+
+.terminal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.terminal-dot.red { background: #ff5f57; }
+.terminal-dot.yellow { background: #febc2e; }
+.terminal-dot.green { background: #28c840; }
+
+/* Terminal text styling - more subtle */
+.terminal-text {
+  font-family: var(--font-geist-mono), 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.terminal-prompt::before {
+  content: '>';
+  color: var(--amber);
+  margin-right: 0.5rem;
+}
+
+/* Typing cursor effect */
+.cursor-blink::after {
+  content: '_';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ===========================================
+   BOOT SEQUENCE ANIMATION
+   =========================================== */
+
+.boot-sequence {
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.boot-sequence.skip {
+  display: none;
+}
+
+/* Smooth black fade transition */
+.boot-sequence.boot-flash-out {
+  animation: boot-fade-out 1.5s ease-out forwards;
+}
+
+@keyframes boot-fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+/* Tyrell Corp logo intro */
+.boot-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: boot-logo-fade 1.8s ease-out 0.2s forwards;
+}
+
+.boot-logo-text {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.6em;
+  color: var(--amber);
+  text-transform: uppercase;
+  text-shadow: 0 0 30px var(--amber-glow);
+}
+
+.boot-logo-sub {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+@keyframes boot-logo-fade {
+  0% { opacity: 0; transform: scale(0.95); }
+  40% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* Horizontal scanline sweep */
+.boot-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--cyan) 30%, var(--cyan) 70%, transparent 100%);
+  opacity: 0.4;
+  box-shadow: 0 0 12px var(--cyan-glow);
+  animation: scanline-sweep 2.5s ease-in-out 0.5s forwards;
+  top: -2px;
+}
+
+@keyframes scanline-sweep {
+  0% { top: -2px; opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Boot lines container - delayed start for logo */
+.boot-lines-container {
+  opacity: 0;
+  animation: boot-lines-show 0.3s ease-out 1.6s forwards;
+}
+
+@keyframes boot-lines-show {
+  to { opacity: 1; }
+}
+
+.boot-line {
+  font-family: var(--font-geist-mono), monospace;
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: boot-line-appear 0.6s ease-out forwards;
+}
+
+.boot-line:nth-child(1) { animation-delay: 1.8s; }
+.boot-line:nth-child(2) { animation-delay: 2.3s; }
+.boot-line:nth-child(3) { animation-delay: 2.8s; }
+.boot-line:nth-child(4) { animation-delay: 3.3s; }
+.boot-line:nth-child(5) { animation-delay: 3.8s; }
+.boot-line:nth-child(6) { animation-delay: 4.3s; color: var(--cyan); }
+.boot-line:nth-child(7) { animation-delay: 4.8s; color: var(--text-secondary); }
+
+@keyframes boot-line-appear {
+  to { opacity: 1; }
+}
+
+/* ===========================================
+   CYBER CARDS (Dossier Style)
+   =========================================== */
+
+.cyber-card {
+  position: relative;
+  background: linear-gradient(135deg, var(--surface), var(--deep));
+  border: 1px solid var(--cyan-dim);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  transform: scaleX(0);
+  transition: transform var(--transition-slow);
+}
+
+.cyber-card:hover::before {
+  transform: scaleX(1);
+}
+
+.cyber-card:hover {
+  border-color: var(--cyan-glow);
+  box-shadow:
+    0 0 30px var(--cyan-dim),
+    inset 0 0 20px rgba(0, 212, 255, 0.03);
+  transform: translateY(-2px);
+}
+
+/* Corner accents */
+.cyber-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-right: 1px solid var(--cyan);
+  border-bottom: 1px solid var(--cyan);
+  opacity: 0.3;
+  transition: opacity var(--transition-slow);
+}
+
+.cyber-card:hover::after {
+  opacity: 0.8;
+}
+
+/* ===========================================
+   HOLOGRAPHIC EFFECTS
+   =========================================== */
+
+.holo-text {
+  background: linear-gradient(
+    90deg,
+    var(--text-primary) 0%,
+    var(--cyan) 25%,
+    var(--text-primary) 50%,
+    var(--magenta) 75%,
+    var(--text-primary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: holo-shift 8s linear infinite;
+}
+
+@keyframes holo-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Holographic billboard effect */
+.holo-billboard {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-billboard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.05) 50%,
+    transparent 100%
+  );
+  animation: holo-scan 3s linear infinite;
+}
+
+@keyframes holo-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* ===========================================
+   SECTION STYLING
+   =========================================== */
+
+.section-void {
+  background: var(--void);
+}
+
+.section-deep {
+  background: var(--deep);
+}
+
+.section-gradient {
+  background: linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);
+}
+
+/* Section divider - Tyrell pyramid style */
+.divider-pyramid {
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(
+    to top,
+    var(--amber) 0%,
+    transparent 100%
+  );
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  opacity: 0.6;
+  margin: 2rem auto;
+}
+
+/* ===========================================
+   BUTTONS - REPLICANT STYLE
+   =========================================== */
+
+.btn-replicant {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  background: transparent;
+  border: 1px solid var(--cyan);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-replicant::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--cyan-dim), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn-replicant:hover::before {
+  left: 100%;
+}
+
+.btn-replicant:hover {
+  background: var(--cyan-dim);
+  box-shadow: 0 0 20px var(--cyan-glow);
+  transform: translateY(-1px);
+}
+
+.btn-replicant-amber {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+.btn-replicant-amber::before {
+  background: linear-gradient(90deg, transparent, var(--amber-dim), transparent);
+}
+
+.btn-replicant-amber:hover {
+  background: var(--amber-dim);
+  box-shadow: 0 0 20px var(--amber-glow);
+}
+
+/* ===========================================
+   NAVIGATION - FLOATING CONSOLE
+   =========================================== */
+
+.nav-console {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(3, 3, 5, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cyan-dim);
+}
+
+.nav-link {
+  position: relative;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  transition: color var(--transition-slow);
+}
+
+.nav-link:hover {
+  color: var(--cyan);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cyan);
+  transition: width var(--transition-slow);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ===========================================
+   SCROLL ANIMATIONS (Cinematic)
+   =========================================== */
+
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-dramatic) cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform var(--transition-dramatic) cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children - slower, more dramatic */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-cinematic) cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform var(--transition-cinematic) cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0.2s; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 0.5s; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 0.8s; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 1.1s; }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 1.4s; }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 1.7s; }
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide animations */
+.slide-in-left {
+  animation: slide-left var(--transition-cinematic) ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slide-right var(--transition-cinematic) ease-out forwards;
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===========================================
+   ORIGAMI MOTIF (Easter Egg)
+   =========================================== */
+
+.origami-crane {
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.origami-crane:hover {
+  opacity: 0.8;
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ===========================================
+   EYE / VOIGHT-KAMPFF ELEMENT
+   =========================================== */
+
+.vk-eye {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    var(--amber) 0%,
+    #8b4513 30%,
+    var(--void) 60%
+  );
+  box-shadow:
+    0 0 40px var(--amber-glow),
+    inset 0 0 20px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.vk-eye::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25%;
+  height: 25%;
+  background: var(--void);
+  border-radius: 50%;
+}
+
+.vk-eye::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 10%;
+  height: 10%;
+  background: white;
+  border-radius: 50%;
+}
+
+/* Light reflection sweep */
+.vk-eye .reflection {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  animation: eye-sweep 4s ease-in-out infinite;
+}
+
+@keyframes eye-sweep {
+  0%, 100% { transform: translateX(-50%) translateY(-50%); }
+  50% { transform: translateX(50%) translateY(50%); }
+}
+
+/* ===========================================
+   BASELINE QUOTE STYLING
+   =========================================== */
+
+.baseline-quote {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--text-dim);
+  padding: 1rem 1.5rem;
+  border-left: 1px solid var(--muted);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* ===========================================
+   MEMORY FLASH EFFECT
+   =========================================== */
+
+.memory-flash {
+  animation: memory-flicker 0.15s ease-out;
+}
+
+@keyframes memory-flicker {
+  0% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.5; filter: brightness(2); }
+  100% { opacity: 1; filter: brightness(1); }
+}
+
+/* ===========================================
+   SCROLLBAR (Blade Runner Style)
+   =========================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 0;
+  border-left: 1px solid var(--cyan-dim);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-dim);
 }
 
 /* ===========================================
    UTILITY CLASSES
    =========================================== */
 
-/* Text truncation with line clamping */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -64,7 +813,6 @@ body {
   overflow: hidden;
 }
 
-/* Screen reader only content (for accessibility) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -77,270 +825,454 @@ body {
   border-width: 0;
 }
 
-/* Skip to content link for keyboard navigation */
-.skip-to-content {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  background: var(--accent);
-  color: white;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  z-index: 100;
-  transition: top var(--transition-base) ease;
-}
-
-.skip-to-content:focus {
-  top: 0;
-}
-
-/* ===========================================
-   SCROLL ANIMATIONS
-   =========================================== */
-
-/* Elements fade in when they enter viewport */
-.fade-in-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered animation delays for child elements */
-.stagger-children > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.stagger-children.visible > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-children.visible > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger-children.visible > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger-children.visible > *:nth-child(4) { animation-delay: 0.4s; }
-.stagger-children.visible > *:nth-child(5) { animation-delay: 0.5s; }
-.stagger-children.visible > *:nth-child(6) { animation-delay: 0.6s; }
-
-.stagger-children.visible > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===========================================
-   ADVANCED ANIMATIONS & KEYFRAMES
-   =========================================== */
-
-/* Typing animation */
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: var(--accent); }
-}
-
-.typing-animation {
-  overflow: hidden;
-  border-right: 2px solid var(--accent);
-  white-space: nowrap;
-  animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
-}
-
-/* Gradient animation */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.gradient-animated {
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-/* Slide in from left */
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Slide in from right */
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Floating animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.float-animation {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Pulse glow effect */
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
-  }
-}
-
-/* Blob morphing background */
-@keyframes blob-morph {
-  0%, 100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-  50% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-  }
-}
-
-.blob-animated {
-  animation: blob-morph 8s ease-in-out infinite;
-}
-
-/* Scale in animation */
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Rotate in animation */
-@keyframes rotate-in {
-  from {
-    opacity: 0;
-    transform: rotate(-10deg) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-}
-
-/* Shimmer effect for loading states */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-.shimmer {
-  animation: shimmer 2s infinite linear;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  background-size: 1000px 100%;
-}
-
-/* Slide up animation classes */
-.slide-in-left {
-  animation: slide-in-left 0.6s ease-out forwards;
-}
-
-.slide-in-right {
-  animation: slide-in-right 0.6s ease-out forwards;
-}
-
-.scale-in {
-  animation: scale-in 0.5s ease-out forwards;
-}
-
-/* Parallax effect hint */
-.parallax-element {
-  transition: transform 0.1s ease-out;
-}
-
-/* ===========================================
-   ENHANCED FOCUS STATES
-   =========================================== */
-
-/* Better focus indicators for accessibility */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-/* ===========================================
-   CUSTOM SCROLLBAR (Optional)
-   =========================================== */
-
-/* Customize scrollbar for better aesthetics */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
-
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-thumb {
-    background: #374151;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #4b5563;
-  }
-}
-
-/* ===========================================
-   PERFORMANCE OPTIMIZATIONS
-   =========================================== */
-
-/* Hint browser for hardware acceleration on animated elements */
 .will-animate {
   will-change: transform, opacity;
 }
 
-/* Reduce motion for users who prefer it */
+/* Focus states */
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+/* ===========================================
+   ANAMORPHIC LIGHT STREAKS
+   Horizontal lens flare bars that drift slowly.
+   Apply to a section's ::before or use as overlay.
+   =========================================== */
+
+.anamorphic-streak {
+  position: relative;
+  overflow: hidden;
+}
+
+.anamorphic-streak::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -100%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 212, 255, 0.06) 35%,
+    rgba(0, 212, 255, 0.1) 50%,
+    rgba(0, 212, 255, 0.06) 65%,
+    transparent 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: anamorphic-drift-1 25s linear infinite;
+}
+
+.anamorphic-streak::after {
+  content: '';
+  position: absolute;
+  top: 65%;
+  left: -100%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(255, 159, 28, 0.04) 40%,
+    rgba(255, 159, 28, 0.08) 50%,
+    rgba(255, 159, 28, 0.04) 60%,
+    transparent 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: anamorphic-drift-2 35s linear infinite;
+}
+
+@keyframes anamorphic-drift-1 {
+  0%   { transform: translateX(-20%); }
+  100% { transform: translateX(20%); }
+}
+
+@keyframes anamorphic-drift-2 {
+  0%   { transform: translateX(20%); }
+  100% { transform: translateX(-20%); }
+}
+
+/* ===========================================
+   ATMOSPHERIC HAZE BETWEEN SECTIONS
+   Soft fog/haze gradients at section boundaries.
+   Place this element between sections or apply
+   to a divider element.
+   =========================================== */
+
+.atmospheric-haze {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  margin-top: -60px;
+  margin-bottom: -60px;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    rgba(0, 212, 255, 0.03) 0%,
+    transparent 70%
+  );
+}
+
+.atmospheric-haze::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(12, 14, 21, 0.6) 20%,
+    rgba(18, 21, 29, 0.8) 50%,
+    rgba(12, 14, 21, 0.6) 80%,
+    transparent 100%
+  );
+  opacity: 0.7;
+  animation: haze-breathe 12s ease-in-out infinite;
+}
+
+.atmospheric-haze::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.05) 30%,
+    rgba(0, 212, 255, 0.08) 50%,
+    rgba(0, 212, 255, 0.05) 70%,
+    transparent 100%
+  );
+}
+
+@keyframes haze-breathe {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.8; }
+}
+
+/* Variant: warm amber haze */
+.atmospheric-haze--warm::before {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(12, 14, 21, 0.5) 20%,
+    rgba(18, 16, 12, 0.6) 50%,
+    rgba(12, 14, 21, 0.5) 80%,
+    transparent 100%
+  );
+}
+
+.atmospheric-haze--warm::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 159, 28, 0.04) 30%,
+    rgba(255, 159, 28, 0.07) 50%,
+    rgba(255, 159, 28, 0.04) 70%,
+    transparent 100%
+  );
+}
+
+/* ===========================================
+   FLOATING DUST PARTICLES
+   CSS-only dust motes drifting in light beams.
+   Apply to a container. Uses box-shadows on
+   pseudo-elements to create multiple tiny dots.
+   =========================================== */
+
+.dust-particles {
+  position: relative;
+  overflow: hidden;
+}
+
+.dust-particles::before,
+.dust-particles::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* First set of particles: slow upward drift */
+.dust-particles::before {
+  top: 80%;
+  left: 15%;
+  box-shadow:
+    0 0 1px rgba(255, 255, 255, 0.06),
+    120px -60px 0 rgba(255, 255, 255, 0.05),
+    340px -120px 0 rgba(255, 255, 255, 0.07),
+    520px -30px 0 rgba(255, 255, 255, 0.04),
+    700px -90px 0 rgba(255, 255, 255, 0.06),
+    250px 40px 0 rgba(255, 255, 255, 0.05),
+    890px -50px 0 rgba(255, 255, 255, 0.04);
+  animation: dust-float-1 40s linear infinite;
+}
+
+/* Second set of particles: slower diagonal drift */
+.dust-particles::after {
+  top: 60%;
+  left: 40%;
+  box-shadow:
+    0 0 1px rgba(255, 255, 255, 0.05),
+    80px 30px 0 rgba(255, 255, 255, 0.06),
+    200px -80px 0 rgba(255, 255, 255, 0.04),
+    -150px -40px 0 rgba(255, 255, 255, 0.07),
+    400px 20px 0 rgba(255, 255, 255, 0.05),
+    -300px -100px 0 rgba(255, 255, 255, 0.04);
+  animation: dust-float-2 55s linear infinite;
+}
+
+@keyframes dust-float-1 {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.06;
+  }
+  25% {
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-200px) translateX(40px);
+    opacity: 0.06;
+  }
+  75% {
+    opacity: 0.09;
+  }
+  100% {
+    transform: translateY(-400px) translateX(10px);
+    opacity: 0.06;
+  }
+}
+
+@keyframes dust-float-2 {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.05;
+  }
+  33% {
+    opacity: 0.09;
+  }
+  66% {
+    transform: translateY(-150px) translateX(-30px);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translateY(-300px) translateX(20px);
+    opacity: 0.07;
+  }
+}
+
+/* ===========================================
+   NEON REFLECTION EFFECT
+   Subtle upward gradient simulating neon light
+   reflecting off a wet surface at section bottoms.
+   =========================================== */
+
+.neon-reflect {
+  position: relative;
+}
+
+.neon-reflect::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 212, 255, 0.04) 0%,
+    rgba(0, 212, 255, 0.02) 20%,
+    rgba(0, 212, 255, 0.008) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  mask-image: linear-gradient(
+    to top,
+    black 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    black 0%,
+    transparent 100%
+  );
+}
+
+/* Warm amber variant: Tyrell / Wallace ambiance */
+.neon-reflect--amber::after {
+  background: linear-gradient(
+    to top,
+    rgba(255, 159, 28, 0.035) 0%,
+    rgba(255, 159, 28, 0.015) 20%,
+    rgba(255, 159, 28, 0.006) 50%,
+    transparent 100%
+  );
+}
+
+/* Magenta variant: neon signage reflection */
+.neon-reflect--magenta::after {
+  background: linear-gradient(
+    to top,
+    rgba(255, 45, 106, 0.03) 0%,
+    rgba(255, 45, 106, 0.012) 20%,
+    rgba(255, 45, 106, 0.005) 50%,
+    transparent 100%
+  );
+}
+
+/* Combined: multi-color wet-street reflection */
+.neon-reflect--street::after {
+  background: linear-gradient(
+    to top,
+    rgba(0, 212, 255, 0.025) 0%,
+    rgba(255, 45, 106, 0.015) 10%,
+    rgba(255, 159, 28, 0.01) 25%,
+    transparent 60%
+  );
+}
+
+/* ===========================================
+   VHS TRACKING DISTORTION
+   Very subtle horizontal shift / glitch that
+   triggers occasionally. Apply to sections or
+   the main content wrapper.
+   =========================================== */
+
+.vhs-tracking {
+  animation: vhs-track 18s steps(1) infinite;
+}
+
+@keyframes vhs-track {
+  /* Idle most of the time - no distortion */
+  0%     { transform: translateX(0); }
+  /* Brief micro-glitch at ~22% through the cycle */
+  22%    { transform: translateX(0); }
+  22.3%  { transform: translateX(-1px) skewX(-0.1deg); }
+  22.6%  { transform: translateX(1px); }
+  22.8%  { transform: translateX(0); }
+  /* Another barely-there twitch at ~58% */
+  58%    { transform: translateX(0); }
+  58.2%  { transform: translateX(0.5px) skewX(0.05deg); }
+  58.4%  { transform: translateX(-0.5px); }
+  58.5%  { transform: translateX(0); }
+  /* Micro-flicker near the end at ~84% */
+  84%    { transform: translateX(0); }
+  84.15% { transform: translateX(-1px); }
+  84.3%  { transform: translateX(0.5px) skewX(-0.08deg); }
+  84.45% { transform: translateX(0); }
+  100%   { transform: translateX(0); }
+}
+
+/* More aggressive variant (still subtle) for a
+   dedicated overlay element */
+.vhs-tracking--overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 97;
+  opacity: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.015) 50%,
+    transparent 51%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  animation: vhs-overlay-flash 22s steps(1) infinite;
+}
+
+@keyframes vhs-overlay-flash {
+  0%     { opacity: 0; transform: translateY(0); }
+  /* Quick scan-bar flash */
+  31%    { opacity: 0; }
+  31.1%  { opacity: 1; transform: translateY(20vh); }
+  31.4%  { opacity: 1; transform: translateY(45vh); }
+  31.5%  { opacity: 0; transform: translateY(0); }
+  /* Another pass */
+  67%    { opacity: 0; }
+  67.1%  { opacity: 1; transform: translateY(60vh); }
+  67.35% { opacity: 1; transform: translateY(80vh); }
+  67.4%  { opacity: 0; transform: translateY(0); }
+  100%   { opacity: 0; }
+}
+
+/* ===========================================
+   SECTION DIVIDERS - Searchlight Horizon
+   =========================================== */
+
+.section-divider {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--cyan-dim) 20%,
+    var(--cyan-dim) 80%,
+    transparent 100%
+  );
+}
+
+.section-divider-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 40px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 212, 255, 0.12) 0%,
+    rgba(0, 212, 255, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ===========================================
+   NAVIGATION STATUS LED
+   =========================================== */
+
+.status-led {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan-glow), 0 0 12px var(--cyan-dim);
+  animation: led-pulse 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 4px var(--cyan-dim); }
+  50% { opacity: 1; box-shadow: 0 0 8px var(--cyan-glow), 0 0 16px var(--cyan-dim); }
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -349,5 +1281,46 @@ button:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .boot-sequence {
+    display: none;
+  }
+
+  /* Disable all atmospheric effects */
+  .anamorphic-streak::before,
+  .anamorphic-streak::after {
+    display: none;
+  }
+
+  .atmospheric-haze {
+    display: none;
+  }
+
+  .dust-particles::before,
+  .dust-particles::after {
+    display: none;
+  }
+
+  .neon-reflect::after {
+    display: none;
+  }
+
+  .vhs-tracking {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .vhs-tracking--overlay {
+    display: none;
+  }
+
+  .boot-scanline {
+    display: none;
+  }
+
+  .status-led {
+    animation: none;
+    opacity: 0.8;
   }
 }

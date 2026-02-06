@@ -21,7 +21,6 @@ export default function Experience() {
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
-      // Observe each timeline item
       const items = sectionRef.current.querySelectorAll('.timeline-item');
       items.forEach((item) => observer.observe(item));
     }
@@ -33,127 +32,97 @@ export default function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-6 bg-zinc-50 dark:bg-zinc-950 fade-in-on-scroll"
+      className="relative py-24 px-6 section-deep fade-in-on-scroll neon-reflect--amber dust-particles"
     >
-      <div className="max-w-5xl mx-auto">
+      {/* Fog layer */}
+      <div className="fog-layer opacity-20" />
+
+      {/* Single ambient glow */}
+      <div className="glow-orb w-[500px] h-[500px] bg-amber/3 top-0 right-1/4" />
+
+      {/* Warm neon atmosphere - distant street-level glow */}
+      <div
+        className="absolute bottom-0 left-0 w-[320px] h-[500px] pointer-events-none z-[0] opacity-[1.50] mix-blend-screen hidden lg:block"
+        aria-hidden="true"
+        style={{
+          backgroundImage: 'url(/images/neon_sign.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center bottom',
+          filter: 'brightness(0.5) contrast(1.2) hue-rotate(-5deg)',
+          maskImage: 'radial-gradient(ellipse at bottom left, black 0%, transparent 70%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at bottom left, black 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="mb-12">
+          <span className="terminal-text text-xs tracking-[0.2em] uppercase block mb-3">
+            // employment.records
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extralight text-text-primary">
             {SECTION_CONTENT.experience.heading}
           </h2>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            {SECTION_CONTENT.experience.description}
-          </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-500 transform md:-translate-x-1/2" />
+        {/* Experience Items */}
+        <div className="space-y-6">
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              className="timeline-item fade-in-on-scroll"
+            >
 
-          {/* Experience Items */}
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className={`timeline-item relative fade-in-on-scroll ${
-                  index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2 md:ml-auto'
-                }`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className={`flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-4`}>
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-zinc-50 dark:border-zinc-950 transform md:-translate-x-1/2 z-[5]" />
-
-                  {/* Content Card */}
-                  <div className={`ml-8 md:ml-0 flex-1 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
-                    <div
-                      className={`relative z-10 p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-soft hover:shadow-soft-lg transition-all duration-500 hover:scale-[1.02] ${
-                        index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'
-                      }`}
-                    >
-                      {/* Company & Position */}
-                      <div className="mb-4">
-                        <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
-                          <div>
-                            <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-1">
-                              {exp.position}
-                            </h3>
-                            <p className="text-blue-600 dark:text-blue-400 font-medium">
-                              {exp.company}
-                            </p>
-                          </div>
-                          {exp.company === 'Practice Better' && (
-                            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800">
-                              Incoming
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
-                          <span className="flex items-center gap-1">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            {exp.duration}
+                {/* Content Card */}
+                <div className="cyber-card p-5 rounded-cyber">
+                  {/* Header row */}
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-1">
+                        <h3 className="text-lg font-light text-text-primary">
+                          {exp.position}
+                        </h3>
+                        {exp.company === 'Practice Better' && (
+                          <span className="px-2 py-0.5 text-[10px] border border-amber text-amber rounded">
+                            Incoming
                           </span>
-                          <span className="flex items-center gap-1">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            {exp.location}
-                          </span>
-                        </div>
+                        )}
                       </div>
-
-                      {/* Description Points */}
-                      <ul className="space-y-3 mb-4">
-                        {exp.description.map((point, i) => (
-                          <li
-                            key={i}
-                            className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed"
-                          >
-                            <span className="text-blue-500 mt-1 flex-shrink-0">▸</span>
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Technologies */}
-                      <div>
-                        <h4 className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-2">
-                          Technologies Used
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {exp.technologies.map((tech, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 text-xs rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800 hover:scale-110 hover:shadow-glow transition-all duration-200"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      <p className="text-cyan text-sm">{exp.company}</p>
+                    </div>
+                    <div className="text-right text-xs text-text-dim shrink-0">
+                      <div>{exp.duration}</div>
+                      <div>{exp.location}</div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all duration-300"
-          >
-            View My Projects
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
+                  {/* Description Points */}
+                  <ul className="space-y-1.5 mb-4">
+                    {exp.description.map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-2 text-xs text-text-secondary leading-relaxed"
+                      >
+                        <span className="text-amber flex-shrink-0">{'>'}</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Technologies - inline */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {exp.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 text-[10px] border border-cyan-dim text-text-dim rounded hover:border-cyan hover:text-cyan transition-all duration-700"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -6,31 +6,54 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "media",
+  darkMode: "class",
   theme: {
     extend: {
-      // Custom color palette for brand consistency
+      // Blade Runner 2049 Color Palette
       colors: {
-        brand: {
-          primary: "#2563eb", // blue-600
-          secondary: "#9333ea", // purple-600
-          accent: "#0ea5e9", // sky-500
+        // Base dark colors
+        void: "#030305",
+        abyss: "#070810",
+        deep: "#0c0e15",
+        surface: "#12151d",
+        muted: "#1a1d28",
+
+        // Neon accents
+        cyan: {
+          DEFAULT: "#00d4ff",
+          dim: "rgba(0, 212, 255, 0.15)",
+          glow: "rgba(0, 212, 255, 0.4)",
         },
+        amber: {
+          DEFAULT: "#ff9f1c",
+          dim: "rgba(255, 159, 28, 0.15)",
+          glow: "rgba(255, 159, 28, 0.4)",
+        },
+        magenta: {
+          DEFAULT: "#ff2d6a",
+          dim: "rgba(255, 45, 106, 0.15)",
+          glow: "rgba(255, 45, 106, 0.4)",
+        },
+
+        // Text hierarchy
+        "text-primary": "#e8e6e3",
+        "text-secondary": "#9ca3af",
+        "text-dim": "#5c6370",
       },
-      // Custom animation definitions
+
+      // Cinematic animations
       animation: {
-        "fade-in": "fadeIn 0.6s ease-out forwards",
-        "fade-in-up": "fadeInUp 0.6s ease-out forwards",
-        "fade-in-down": "fadeInDown 0.6s ease-out forwards",
-        "slide-in": "slideIn 0.5s ease-out forwards",
-        "slide-in-left": "slideInLeft 0.6s ease-out forwards",
-        "slide-in-right": "slideInRight 0.6s ease-out forwards",
-        "scale-in": "scaleIn 0.4s ease-out forwards",
-        "float": "float 3s ease-in-out infinite",
-        "gradient": "gradientShift 3s ease infinite",
-        "pulse-glow": "pulseGlow 2s ease-in-out infinite",
-        "blob": "blobMorph 8s ease-in-out infinite",
-        "shimmer": "shimmer 2s infinite linear",
+        "fade-in": "fadeIn 1.2s ease-out forwards",
+        "fade-in-up": "fadeInUp 1.2s ease-out forwards",
+        "slide-in-left": "slideInLeft 1.2s ease-out forwards",
+        "slide-in-right": "slideInRight 1.2s ease-out forwards",
+        "glow-pulse": "glowPulse 4s ease-in-out infinite",
+        "fog-drift": "fogDrift 20s ease-in-out infinite",
+        "holo-shift": "holoShift 8s linear infinite",
+        "scan": "scan 3s linear infinite",
+        "blink": "blink 1s step-end infinite",
+        "grain": "grain 0.5s steps(1) infinite",
+        "slow-float": "slowFloat 6s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -38,71 +61,81 @@ const config: Config = {
           "100%": { opacity: "1" },
         },
         fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "0%": { opacity: "0", transform: "translateY(40px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeInDown: {
-          "0%": { opacity: "0", transform: "translateY(-20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        slideIn: {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(0)" },
         },
         slideInLeft: {
-          "0%": { opacity: "0", transform: "translateX(-50px)" },
+          "0%": { opacity: "0", transform: "translateX(-60px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
         slideInRight: {
-          "0%": { opacity: "0", transform: "translateX(50px)" },
+          "0%": { opacity: "0", transform: "translateX(60px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
-        scaleIn: {
-          "0%": { opacity: "0", transform: "scale(0.9)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
+        glowPulse: {
+          "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
+          "50%": { opacity: "0.5", transform: "scale(1.1)" },
         },
-        float: {
+        fogDrift: {
+          "0%, 100%": { opacity: "0.8", transform: "translateX(0)" },
+          "50%": { opacity: "1", transform: "translateX(2%)" },
+        },
+        holoShift: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "200% 50%" },
+        },
+        scan: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
+        blink: {
+          "0%, 50%": { opacity: "1" },
+          "51%, 100%": { opacity: "0" },
+        },
+        grain: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "10%": { transform: "translate(-1%, -1%)" },
+          "20%": { transform: "translate(1%, 1%)" },
+          "30%": { transform: "translate(-1%, 1%)" },
+          "40%": { transform: "translate(1%, -1%)" },
+        },
+        slowFloat: {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        gradientShift: {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-        pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 5px rgba(37, 99, 235, 0.5)" },
-          "50%": { boxShadow: "0 0 20px rgba(37, 99, 235, 0.8)" },
-        },
-        blobMorph: {
-          "0%, 100%": { borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" },
-          "50%": { borderRadius: "30% 60% 70% 40% / 50% 60% 30% 60%" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-1000px 0" },
-          "100%": { backgroundPosition: "1000px 0" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
-      // Enhanced typography scale
-      fontSize: {
-        "display": ["4.5rem", { lineHeight: "1.1", fontWeight: "700" }],
-        "display-sm": ["3.5rem", { lineHeight: "1.2", fontWeight: "700" }],
+
+      // Cinematic transition timings
+      transitionDuration: {
+        "slow": "800ms",
+        "cinematic": "1200ms",
       },
-      // Custom spacing for consistency
-      spacing: {
-        "18": "4.5rem",
-        "112": "28rem",
-        "128": "32rem",
+
+      // Typography
+      fontFamily: {
+        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "JetBrains Mono", "monospace"],
       },
-      // Enhanced shadows for depth
+
+      // Blade Runner shadows
       boxShadow: {
-        "soft": "0 2px 15px rgba(0, 0, 0, 0.05)",
-        "soft-lg": "0 10px 40px rgba(0, 0, 0, 0.1)",
-        "glow": "0 0 20px rgba(37, 99, 235, 0.3)",
-        "glow-lg": "0 0 30px rgba(37, 99, 235, 0.5)",
+        "neon-cyan": "0 0 20px rgba(0, 212, 255, 0.3)",
+        "neon-cyan-lg": "0 0 40px rgba(0, 212, 255, 0.4)",
+        "neon-amber": "0 0 20px rgba(255, 159, 28, 0.3)",
+        "neon-amber-lg": "0 0 40px rgba(255, 159, 28, 0.4)",
+        "neon-magenta": "0 0 20px rgba(255, 45, 106, 0.3)",
+        "inner-glow": "inset 0 0 30px rgba(0, 0, 0, 0.5)",
       },
-      // Backdrop blur for glassmorphism
+
+      // Backdrop blur
       backdropBlur: {
-        "xs": "2px",
+        xs: "2px",
+        heavy: "20px",
+      },
+
+      // Border radius (sharp, retro-futuristic)
+      borderRadius: {
+        cyber: "4px",
       },
     },
   },

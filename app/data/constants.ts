@@ -7,10 +7,10 @@
 // ------------------------------------
 // Update these with your information
 export const PERSONAL_INFO = {
-  name: "Ben",
-  fullName: "Benjamin Gladney",
-  title: "Data Scientist & Software Engineer",
-  tagline: "I build projects spanning machine learning, computational research, and web development. I like solving problems.",
+  name: "Benjamin Gladney",
+  fullName: "BG",
+  title: "AI & Software Engineer",
+  tagline: "",
   email: "bgladney@uwaterloo.ca",
   phone: "+1-437-388-5855",
   github: "https://github.com/b9nn",
@@ -46,8 +46,7 @@ export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
+  { label: "Projects", href: "#memory-archive" },
   { label: "Contact", href: "#contact" }
 ] as const;
 

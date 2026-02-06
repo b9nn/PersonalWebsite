@@ -6,7 +6,13 @@
       "Bash(git push)",
       "Bash(npm run build:*)",
       "Bash(findstr:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(git push:*)",
+      "Bash(ren \"mixkit-futuristic-buildings-flashing-in-the-night-31029-hd-ready.mp4\" \"hero-bg.mp4\")",
+      "Bash(ren:*)",
+      "Bash(move \"mixkit-futuristic-buildings-flashing-in-the-night-31029-hd-ready.mp4\" \"hero-bg.mp4\")",
+      "Bash(move \"vecteezy_on-a-black-background-the-rainstorm-effect-raining-material_24971910.mp4\" \"rain-overlay.mp4\")",
+      "Bash(ls -la \"c:\\\\Users\\\\bglad\\\\OneDrive\\\\Desktop\\\\Code\\\\Personal\\\\portfolio-website\\\\public\\\\images\"\" && ls -la \"c:UsersbgladOneDriveDesktopCodePersonalportfolio-websitepublicvideos\"\")"
     ],
     "deny": [],
     "ask": []
