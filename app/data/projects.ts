@@ -23,6 +23,32 @@ export interface Project {
 // Featured projects (displayed on homepage)
 export const featuredProjects: Project[] = [
   {
+    name: "Argus — Arctic Defence Platform",
+    description: "Full-stack geospatial dark-vessel detection platform that correlates SAR satellite imagery with live AIS tracking to surface suspicious ships in Arctic waters",
+    language: "Python + TypeScript",
+    url: "https://github.com/b9nn/argus-missile",
+    category: "Full Stack",
+    technologies: ["React", "FastAPI", "PostgreSQL/PostGIS", "Celery", "Docker", "deck.gl", "WebSockets"],
+    achievements: [
+      "Built 7-service Docker Compose stack with real-time WebSocket map updates via deck.gl",
+      "Integrated Faster R-CNN on Sentinel-1 SAR imagery, cross-referenced against AIS to flag dark vessels",
+      "Server-side snapshot API for 3-month navigation replay + auto-generated PDF intelligence reports"
+    ]
+  },
+  {
+    name: "Red Light Detection — Raspberry Pi CV",
+    description: "On-device YOLOv5-nano traffic-light classifier running at 12+ FPS on a Raspberry Pi 4 with Pi Camera, hitting 94% mAP on a custom 3,000-image dataset",
+    language: "Python",
+    url: "https://github.com/b9nn",
+    category: "Machine Learning",
+    technologies: ["PyTorch", "YOLOv5", "ONNX Runtime", "Raspberry Pi", "OpenCV"],
+    achievements: [
+      "Deployed YOLOv5-nano on Raspberry Pi 4 + Pi Camera for real-time red/yellow/green classification at 12+ FPS",
+      "Curated and annotated 3,000+ traffic-light images; fine-tuned in PyTorch",
+      "Optimized for edge inference via ONNX Runtime, achieving 94% mAP on the test set"
+    ]
+  },
+  {
     name: "SleepyPlays",
     description: "Automated YouTube Shorts content creation system using AI for story generation, voice synthesis, and scheduled video publishing",
     language: "JavaScript",
@@ -39,7 +65,12 @@ export const featuredProjects: Project[] = [
     category: "Full Stack",
     technologies: ["React", "Django", "SQLite", "Node.js", "TailwindCSS", "OpenAI API"],
     achievements: ["Built responsive UI with React + TailwindCSS", "Developed secure REST API with Django", "Integrated OpenAI API for personalized meal plans", "Reduced meal planning time by 90%"]
-  },
+  }
+];
+
+// All projects (for reference/archive)
+export const projects: Project[] = [
+  ...featuredProjects,
   {
     name: "IMDB Sentiment Classifier",
     description: "Transformer-based sentiment analysis model for movie review classification using DistilBERT",
@@ -57,12 +88,7 @@ export const featuredProjects: Project[] = [
     category: "Machine Learning",
     technologies: ["PyTorch", "Torchvision", "ResNet18", "Python"],
     achievements: ["Fine-tuned pretrained ResNet18 with transfer learning", "Implemented data augmentation pipeline", "Achieved 78% classification accuracy on test set"]
-  }
-];
-
-// All projects (for reference/archive)
-export const projects: Project[] = [
-  ...featuredProjects,
+  },
   {
     name: "FluidFlow",
     description: "Machine-learning regression model that predicts key acoustic outputs of various vocal fold models",

@@ -7,17 +7,17 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
   {
     category: "Programming Languages",
-    skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "SQL", "Bash", "DAX"],
+    skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "SQL", "Bash", "R", "DAX"],
     icon: "💻"
   },
   {
     category: "Software & Tools",
-    skills: ["Azure", "Node.js", "Hugging Face", "DataBricks", "PowerBI", "Excel", "Linux", "Git", "PowerApps", "APIFY"],
+    skills: ["AWS", "Docker", "PostgreSQL/PostGIS", "Redis", "Celery", "Azure", "Azure OpenAI", "Node.js", "MongoDB", "DataBricks", "PowerBI", "Linux", "Git", "Claude Code", "Cursor", "MCP"],
     icon: "🛠️"
   },
   {
     category: "Libraries & Frameworks",
-    skills: ["PyTorch", "TensorFlow", "Hugging Face", "Scikit-Learn", "Django", "React", "Flask", "Pandas", "NumPy", "Matplotlib", "Torchvision", "SQLite"],
+    skills: ["FastAPI", "React", "deck.gl", "MapLibre", "PyTorch", "TensorFlow", "Hugging Face", "Scikit-Learn", "Django", "Flask", "Pandas", "NumPy", "Matplotlib"],
     icon: "📚"
   },
   {
