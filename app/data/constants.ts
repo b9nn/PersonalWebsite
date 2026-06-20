@@ -26,12 +26,10 @@ export const EDUCATION = {
   duration: "Sep. 2024 - May 2029 (Expected)",
   location: "Waterloo, ON",
   courses: [
-    "Data Structures and Algorithms",
-    "Object-Oriented Software Development",
-    "Logic and Computation",
-    "Designing Functional Programs",
-    "Linear Algebra",
-    "Calculus"
+    "Data Structures & Algorithms",
+    "Object-Oriented Programming",
+    "Compilers",
+    "Computer Architecture"
   ],
   extracurriculars: [
     "Data Science Club",

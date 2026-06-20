@@ -45,8 +45,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono-jb);
+  --font-display: var(--font-display);
 }
 
 /* ===========================================
@@ -61,11 +62,18 @@ html {
 body {
   background: var(--void);
   color: var(--text-primary);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   animation: page-fade-in 1.5s ease-out;
+}
+
+/* Headings carry the display face */
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 @keyframes page-fade-in {
@@ -245,7 +253,7 @@ body {
 
 /* Terminal text styling - more subtle */
 .terminal-text {
-  font-family: var(--font-geist-mono), 'JetBrains Mono', monospace;
+  font-family: var(--font-mono-jb), 'JetBrains Mono', monospace;
   color: var(--text-dim);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -310,7 +318,7 @@ body {
 }
 
 .boot-logo-text {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-mono-jb), monospace;
   font-size: 1.2rem;
   letter-spacing: 0.6em;
   color: var(--amber);
@@ -319,7 +327,7 @@ body {
 }
 
 .boot-logo-sub {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-mono-jb), monospace;
   font-size: 0.55rem;
   letter-spacing: 0.35em;
   color: var(--text-dim);
@@ -364,7 +372,7 @@ body {
 }
 
 .boot-line {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-mono-jb), monospace;
   color: var(--text-dim);
   font-size: 0.7rem;
   letter-spacing: 0.05em;
@@ -436,6 +444,66 @@ body {
 
 .cyber-card:hover::after {
   opacity: 0.8;
+}
+
+/* ===========================================
+   CHROMATIC ABERRATION HEADLINE
+   Replicant-grade neon name treatment.
+   =========================================== */
+
+.text-chroma {
+  position: relative;
+  color: var(--text-primary);
+  text-shadow:
+    -1.5px 0 rgba(255, 45, 106, 0.55),
+     1.5px 0 rgba(0, 212, 255, 0.55),
+     0 0 24px rgba(0, 212, 255, 0.22);
+  animation: chroma-pulse 6s ease-in-out infinite;
+}
+
+@keyframes chroma-pulse {
+  0%, 100% {
+    text-shadow:
+      -1.5px 0 rgba(255, 45, 106, 0.55),
+       1.5px 0 rgba(0, 212, 255, 0.55),
+       0 0 24px rgba(0, 212, 255, 0.22);
+  }
+  50% {
+    text-shadow:
+      -2.5px 0 rgba(255, 45, 106, 0.5),
+       2.5px 0 rgba(0, 212, 255, 0.5),
+       0 0 40px rgba(0, 212, 255, 0.32);
+  }
+}
+
+/* Occasional one-off glitch slip on the headline */
+.text-chroma::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--text-primary);
+  text-shadow: 2px 0 rgba(255, 45, 106, 0.6), -2px 0 rgba(0, 212, 255, 0.6);
+  clip-path: inset(0 0 0 0);
+  opacity: 0;
+  animation: chroma-glitch 7s steps(1) infinite;
+}
+
+@keyframes chroma-glitch {
+  0%, 100% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 100% 0); }
+  /* brief slice flicker */
+  42%   { opacity: 0; clip-path: inset(0 0 100% 0); }
+  42.5% { opacity: 0.9; transform: translateX(-3px); clip-path: inset(15% 0 55% 0); }
+  43%   { opacity: 0.9; transform: translateX(3px);  clip-path: inset(60% 0 20% 0); }
+  43.5% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 100% 0); }
+  /* second pass */
+  78%   { opacity: 0; clip-path: inset(0 0 100% 0); }
+  78.4% { opacity: 0.8; transform: translateX(2px); clip-path: inset(35% 0 40% 0); }
+  78.8% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 100% 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-chroma { animation: none; }
+  .text-chroma::after { display: none; }
 }
 
 /* ===========================================
@@ -527,7 +595,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.75rem;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-mono-jb), monospace;
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -592,7 +660,7 @@ body {
 
 .nav-link {
   position: relative;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-mono-jb), monospace;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -756,7 +824,7 @@ body {
    =========================================== */
 
 .baseline-quote {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 0.875rem;
   font-weight: 300;
   color: var(--text-dim);

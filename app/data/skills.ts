@@ -7,17 +7,17 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
   {
     category: "Programming Languages",
-    skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "SQL", "Bash", "R", "DAX"],
+    skills: ["Python", "Rust", "JavaScript", "TypeScript", "C++", "C", "Java", "Ruby", "SQL", "Bash", "R"],
     icon: "💻"
   },
   {
     category: "Software & Tools",
-    skills: ["AWS", "Docker", "PostgreSQL/PostGIS", "Redis", "Celery", "Azure", "Azure OpenAI", "Node.js", "MongoDB", "DataBricks", "PowerBI", "Linux", "Git", "Claude Code", "Cursor", "MCP"],
+    skills: ["AWS", "Azure", "Azure OpenAI", "Vercel", "Docker", "Kubernetes", "GitHub Actions", "Jira", "DataBricks", "Supabase", "Cloudflare R2", "PostgreSQL/PostGIS", "MongoDB", "Redis", "Celery", "Node.js", "PowerBI", "Linux", "Git", "Claude Code", "Cursor", "MCP"],
     icon: "🛠️"
   },
   {
     category: "Libraries & Frameworks",
-    skills: ["FastAPI", "React", "deck.gl", "MapLibre", "PyTorch", "TensorFlow", "Hugging Face", "Scikit-Learn", "Django", "Flask", "Pandas", "NumPy", "Matplotlib"],
+    skills: ["Next.js", "React", "FastAPI", "Django", "Flask", "Rails", ".NET", "Spark", "Playwright", "PyTorch", "TensorFlow", "Hugging Face", "Scikit-Learn", "deck.gl", "MapLibre", "Pandas", "NumPy", "Matplotlib"],
     icon: "📚"
   },
   {

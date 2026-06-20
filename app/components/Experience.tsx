@@ -82,7 +82,7 @@ export default function Experience() {
                         <h3 className="text-lg font-light text-text-primary">
                           {exp.position}
                         </h3>
-                        {exp.company === 'Practice Better' && (
+                        {exp.company === 'Shopify' && (
                           <span className="px-2 py-0.5 text-[10px] border border-amber text-amber rounded">
                             Incoming
                           </span>

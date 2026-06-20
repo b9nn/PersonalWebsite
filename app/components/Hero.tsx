@@ -85,12 +85,15 @@ export default function Hero() {
         {/* Main heading */}
         <h1
           id="hero-heading"
-          className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-tight mb-6 opacity-0"
+          className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-[0.02em] mb-6 opacity-0"
         >
-          <span className="block text-text-primary">
+          <span
+            className="block text-text-primary text-chroma"
+            data-text={PERSONAL_INFO.name}
+          >
             {PERSONAL_INFO.name}
           </span>
-          <span className="block text-text-secondary text-xl md:text-2xl lg:text-3xl mt-6 font-light tracking-wide">
+          <span className="block text-text-secondary text-lg md:text-xl lg:text-2xl mt-6 font-light tracking-[0.35em] uppercase">
             {PERSONAL_INFO.title}
           </span>
         </h1>
